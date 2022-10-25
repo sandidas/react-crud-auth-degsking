@@ -3,12 +3,11 @@ import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/UserContext';
 import { checkCurrentTheme, setCurrentTheme } from '../../utilities/utilities';
-
-import { HiColorSwatch } from "react-icons/hi";
+import { HiColorSwatch } from "react-icons/hi"; // Logo
 
 
 const Header = () => {
-    const { user, userSignout, setSuccessMessage, setErrorMessage } = useContext(AuthContext);
+    const { user, userSignout, showAlert } = useContext(AuthContext);
     const [theme, setTheme] = useState(false);
     const navigate = useNavigate();
 
@@ -52,11 +51,12 @@ const Header = () => {
     const handleUserSignout = () => {
         userSignout()
             .then(() => {
-                setSuccessMessage('Log out successfully')
+                showAlert('success', 'Log out successfully')
                 navigate('/login');
             })
             .catch((error) => {
-                setErrorMessage(error)
+                const errors = error.message + ' | ' + error.code;
+                showAlert('error', errors);
                 navigate('/');
             })
 

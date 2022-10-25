@@ -3,51 +3,38 @@ import React, { createContext, useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth'
 import app from '../firebase/firebase.config';
 // React Hot Toast
-import toast, { Toaster } from 'react-hot-toast';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const AuthContext = createContext({})
 const auth = getAuth(app); // call google firebase auth
 const UserContext = ({ children }) => {
     const [user, setUser] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
-    const [successMessage, setSuccessMessage] = useState('');
     const [loading, setLoading] = useState(true);
 
 
 
 
     const showAlert = (type, message) => {
-        if (type == "error") {
-            console.log("error");
-            toast.error(message, {
-                duration: 10000,
-            });
-        } else if (type == "success") {
-            console.log("Success");
+        if (type == "success") {
             toast.success(message, {
-                duration: 10000,
+                position: "bottom-left",
+                autoClose: 8000,
+                theme: "colored",
             });
 
         } else if (type == "danger") {
-            console.log("danger");
-            toast(
-                (t) => (
-                    <div>
-                        <span> {message} </span>
-                    </div>
-                ),
-                {
-                    duration: 15000,
-                    icon: "😬",
-                    style: {
-                        background: "red",
-                        color: "#fff",
-                        fontSize: "17px",
-                        fontWeight: "bold"
-                    },
-                },
-
-            );
+            toast.error(message, {
+                position: "bottom-left",
+                autoClose: 10000,
+                theme: "colored",
+            });
+        } else {
+            toast.warn(message, {
+                position: "bottom-left",
+                autoClose: 15000,
+                theme: "colored",
+            });
         }
     }
     //====== SIgnin by Google
@@ -67,13 +54,13 @@ const UserContext = ({ children }) => {
 
     // sign in 
     const logInbyEmailAndPassword = (email, password) => {
-        setLoading(false);
+        // setLoading(false);
         return signInWithEmailAndPassword(auth, email, password);
     }
 
     // forget Password
     const requestForgetPassword = (email) => {
-        setLoading(true);
+        // setLoading(false);
         return sendPasswordResetEmail(auth, email);
     }
 
@@ -101,12 +88,12 @@ const UserContext = ({ children }) => {
     }, [])
 
     // pass this by context
-    const authInfo = { createNewUser, logInbyEmailAndPassword, requestForgetPassword, user, successMessage, setSuccessMessage, errorMessage, setErrorMessage, userSignout, signinwithGoogle, loading, showAlert }
+    const authInfo = { createNewUser, logInbyEmailAndPassword, requestForgetPassword, user, userSignout, signinwithGoogle, loading, showAlert }
 
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
-            <Toaster />
+            <ToastContainer />
         </AuthContext.Provider>
     );
 };

@@ -3,23 +3,24 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/UserContext';
 
 const ForgetPassword = () => {
-    const { requestForgetPassword, setSuccessMessage, setErrorMessage, successMessage, errorMessage } = useContext(AuthContext);
+    const { requestForgetPassword, showAlert } = useContext(AuthContext);
 
     const handleForgetpassword = event => {
         event.preventDefault();
-        setErrorMessage(''); // make empty to remove history
-        setSuccessMessage(''); // make empty to remove history
         const form = event.target;
         const email = form.email.value;
+        if (!email) {
+            showAlert('error', "Please do not leave any empty fields.");
+            return
+        }
         requestForgetPassword(email)
             .then(result => {
-                setSuccessMessage('Please check your email, We send an password reset link.');
+                showAlert('success', 'Please check your email, We send an password reset link.');
                 form.reset();
             })
             .catch(error => {
                 const errors = error.message + ' | ' + error.code;
-                setErrorMessage(errors);
-                console.log('Why I am seeing this');
+                showAlert('error', errors);
             });
     }
 
@@ -30,21 +31,7 @@ const ForgetPassword = () => {
             <div>
 
                 <div className="min-h-screen my-5 flex flex-col  items-center">
-
-                    <div className='max-w-md min-w-[70%] text-center'>
-                        {
-                            errorMessage &&
-                            <div className="bg-gradient-to-r from-red-900 via-red-600 to-red-900 p-5 my-5 rounded-md font-medium text-white"> Error!  {errorMessage} </div>
-                        }
-                        {
-                            successMessage &&
-                            <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-5  my-5 rounded-md font-medium text-white"> Success!  {successMessage} </div>
-                        }
-
-
-                    </div>
-
-                    <div className="min-w-[70%] flex flex-col p-6 rounded-md sm:p-10 dark:bg-gray-800 dark:text-gray-100 shadow-md shadow-slate-600">
+                    <div className="min-w-[70%] flex flex-col p-6 rounded-md sm:p-10 dark:bg-gray-900 dark:text-gray-100 shadow shadow-slate-500 border-slate-700">
                         <div className="mb-8 text-center">
                             <h1 className="my-3 text-4xl font-bold">Forget Password</h1>
                             <p className="text-sm dark:text-gray-400">Subit your email to reset your password</p>
@@ -54,7 +41,7 @@ const ForgetPassword = () => {
                             <div className="space-y-4">
                                 <div>
                                     <label htmlFor="email" className="block mb-2 text-sm text-slate-400">Email address</label>
-                                    <input type="email" name="email" id="email" placeholder="hello@sandipandas.net" className="w-full text-xl px-3 py-3 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100" />
+                                    <input required type="email" name="email" id="email" placeholder="hello@sandipandas.net" className="w-full text-xl px-3 py-3 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100" />
                                 </div>
                             </div>
                             <div className="space-y-2">

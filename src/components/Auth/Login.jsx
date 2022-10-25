@@ -35,10 +35,8 @@ const Login = () => {
             })
             .catch(error => {
                 // showAlert('error', "You fuck me. I'll do same");
-                showAlert('danger', "You fuck me. I'll do same");
-                console.log(error);
                 const errors = error.message;
-                // setErrorMessage(errors);
+                showAlert('danger', errors);
             })
     }
     // signin using google
@@ -46,12 +44,12 @@ const Login = () => {
         signinwithGoogle()
             .then((result) => {
                 const user = result.user;
-                // setSuccessMessage('Successfully logged in.');
+                showAlert('success', "logged in successfully.");
                 navigate('/');
             })
             .catch((error) => {
                 const errors = error.message + ' | ' + error.code;
-                // setErrorMessage(errors);
+                showAlert('error', errors);
             });
     }
 
@@ -61,20 +59,7 @@ const Login = () => {
 
             <div className="flex flex-col items-center">
 
-                {/* <div className='max-w-md min-w-[70%] text-center'>
-                    {
-                        errorMessage &&
-                        <div className="bg-gradient-to-r from-red-900 via-red-600 to-red-900 p-5 my-5 rounded-md font-medium text-white"> Error!  {errorMessage} </div>
-                    }
-                    {
-                        successMessage &&
-                        <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-5  my-5 rounded-md font-medium text-white"> Success!  {successMessage} </div>
-                    }
-
-
-                </div> */}
-
-                <div className="min-w-[70%] flex flex-col p-6 rounded-md sm:p-10 dark:bg-gray-800 dark:text-gray-100 shadow-md shadow-slate-600">
+                <div className="min-w-[70%] flex flex-col p-6 rounded-md sm:p-10 dark:bg-gray-900 dark:text-gray-100 shadow shadow-slate-500 border-slate-700">
                     <div className="mb-8 text-center">
                         <h1 className="my-3 text-4xl font-bold">Login Now</h1>
                         <p className="text-sm dark:text-gray-400">Login to access your account</p>
@@ -106,7 +91,7 @@ const Login = () => {
                         <div className="space-y-4">
                             <div>
                                 <label htmlFor="email" className="block mb-2 text-sm text-slate-400">Email address</label>
-                                <input type="email" name="email" id="email" placeholder="hello@sandipandas.net" className="w-full text-xl px-3 py-3 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100" />
+                                <input required type="email" name="email" id="email" placeholder="hello@sandipandas.net" className="w-full text-xl px-3 py-3 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100" />
                             </div>
                             <div>
                                 <div className="flex justify-between mb-2">
@@ -115,7 +100,7 @@ const Login = () => {
                                         <Link className='hover:text-yellow-500' to='/forget-password'>Forget Password</Link>
                                     </label>
                                 </div>
-                                <input type="password" name="password" id="password" placeholder="* * * * *" className="w-full text-xl px-3 py-3 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100" />
+                                <input required type="password" name="password" id="password" placeholder="* * * * *" className="w-full text-xl px-3 py-3 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100" />
                             </div>
                         </div>
                         <div className="space-y-2">
