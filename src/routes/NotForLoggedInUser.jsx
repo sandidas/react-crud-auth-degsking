@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
-import { Navigate, useLocation  } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../context/UserContext';
 
-const PrivateRoute = ({ children }) => {
+const NotForLoggedInUser = ({ children }) => {
     const { user, loading } = useContext(AuthContext);
     const location = useLocation();
+
     if (loading) {
         return (
             // view loading
@@ -16,13 +17,12 @@ const PrivateRoute = ({ children }) => {
         )
 
     } else {
-        if (user && user.uid) {
+        if (!user || !user.uid) {
             return children;
         } else {
-            return <Navigate to='/login' state={{ from:location }} replace  ></Navigate>
+            return <Navigate to='/home' state={{ from: location }} replace  ></Navigate>
         }
     }
-
 };
 
-export default PrivateRoute;
+export default NotForLoggedInUser;

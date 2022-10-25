@@ -35,6 +35,7 @@ _ Setup folder structure
 _ Setup Route, [home, 404]
 _ Setup Context API
 _ Auth Component
+__ Auth [Registration, Login, ForgetPassword]
 _ Component
 _ Private component
 

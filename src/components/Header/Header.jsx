@@ -8,7 +8,7 @@ import { HiColorSwatch } from "react-icons/hi";
 
 
 const Header = () => {
-    const { user } = useContext(AuthContext);
+    const { user, userSignout, setSuccessMessage, setErrorMessage } = useContext(AuthContext);
     const [theme, setTheme] = useState(false);
 
     useEffect(() => {
@@ -61,8 +61,9 @@ const Header = () => {
 
     return (
         <>
-            <header className="p-4 dark:bg-gray-800 dark:text-gray-100 bg-white">
-                <div className="container flex justify-between h-16 mx-auto">
+        
+            <header className="p-4 dark:bg-gray-900 dark:text-gray-100 bg-white">
+                <div className="container flex justify-between h-16 mx-auto w-[90%]">
                     <Link rel="noopener noreferrer" to="/" aria-label="Back to homepage" className="flex items-center p-2 text-4xl font-extrabold">
                          <HiColorSwatch />
                          DegsKing
@@ -89,7 +90,7 @@ const Header = () => {
                             // if id not found / not logged in
                             <div className="items-center flex-shrink-0 hidden lg:flex">
                                 <Link to="/login" className="self-center px-8 py-3 rounded">Sign in</Link>
-                                <Link to="/register" className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900">Sign up</Link>
+                                <Link to="/registration" className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900">Sign up</Link>
                             </div>
                             :
                             // ID found / logged in
