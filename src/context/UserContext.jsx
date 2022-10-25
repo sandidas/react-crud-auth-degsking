@@ -2,9 +2,8 @@ import React, { createContext, useEffect, useState } from 'react';
 //import google firebase auth
 import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth'
 import app from '../firebase/firebase.config';
-// toastify
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// React Hot Toast
+import toast, { Toaster } from 'react-hot-toast';
 
 export const AuthContext = createContext({})
 const auth = getAuth(app); // call google firebase auth
@@ -14,6 +13,43 @@ const UserContext = ({ children }) => {
     const [successMessage, setSuccessMessage] = useState('');
     const [loading, setLoading] = useState(true);
 
+
+
+
+    const showAlert = (type, message) => {
+        if (type == "error") {
+            console.log("error");
+            toast.error(message, {
+                duration: 10000,
+            });
+        } else if (type == "success") {
+            console.log("Success");
+            toast.success(message, {
+                duration: 10000,
+            });
+
+        } else if (type == "danger") {
+            console.log("danger");
+            toast(
+                (t) => (
+                    <div>
+                        <span> {message} </span>
+                    </div>
+                ),
+                {
+                    duration: 15000,
+                    icon: "😬",
+                    style: {
+                        background: "red",
+                        color: "#fff",
+                        fontSize: "17px",
+                        fontWeight: "bold"
+                    },
+                },
+
+            );
+        }
+    }
     //====== SIgnin by Google
     const googleProvider = new GoogleAuthProvider();
 
@@ -31,7 +67,7 @@ const UserContext = ({ children }) => {
 
     // sign in 
     const logInbyEmailAndPassword = (email, password) => {
-        setLoading(true);
+        setLoading(false);
         return signInWithEmailAndPassword(auth, email, password);
     }
 
@@ -53,11 +89,9 @@ const UserContext = ({ children }) => {
             if (currentUser) {
                 setUser(currentUser);
                 setLoading(false);
-                console.log('auth State change', currentUser);
             } else {
                 setUser({});
                 setLoading(false);
-                console.log('auth State change', user);
             }
         })
         // if user change/log out on any route
@@ -67,11 +101,12 @@ const UserContext = ({ children }) => {
     }, [])
 
     // pass this by context
-    const authInfo = { createNewUser, logInbyEmailAndPassword, requestForgetPassword, user, successMessage, setSuccessMessage, errorMessage, setErrorMessage, userSignout, signinwithGoogle, loading, }
+    const authInfo = { createNewUser, logInbyEmailAndPassword, requestForgetPassword, user, successMessage, setSuccessMessage, errorMessage, setErrorMessage, userSignout, signinwithGoogle, loading, showAlert }
 
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
+            <Toaster />
         </AuthContext.Provider>
     );
 };

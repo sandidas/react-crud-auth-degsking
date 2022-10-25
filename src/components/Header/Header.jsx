@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/UserContext';
 import { checkCurrentTheme, setCurrentTheme } from '../../utilities/utilities';
 
@@ -10,6 +10,7 @@ import { HiColorSwatch } from "react-icons/hi";
 const Header = () => {
     const { user, userSignout, setSuccessMessage, setErrorMessage } = useContext(AuthContext);
     const [theme, setTheme] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const currentTheme = checkCurrentTheme();
@@ -52,21 +53,23 @@ const Header = () => {
         userSignout()
             .then(() => {
                 setSuccessMessage('Log out successfully')
+                navigate('/login');
             })
             .catch((error) => {
                 setErrorMessage(error)
+                navigate('/');
             })
 
     }
 
     return (
         <>
-        
+
             <header className="p-4 dark:bg-gray-900 dark:text-gray-100 bg-white">
                 <div className="container flex justify-between h-16 mx-auto w-[90%]">
                     <Link rel="noopener noreferrer" to="/" aria-label="Back to homepage" className="flex items-center p-2 text-4xl font-extrabold">
-                         <HiColorSwatch />
-                         DegsKing
+                        <HiColorSwatch />
+                        DegsKing
                     </Link>
                     <ul className="items-stretch hidden space-x-3 lg:flex">
                         <li className="flex">
