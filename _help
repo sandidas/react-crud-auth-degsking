@@ -1,0 +1,91 @@
+Server
+https://degsking-ass.vercel.app/course/1
+https://degsking-ass.vercel.app/courses
+https://degsking-ass.vercel.app/courses/category/:id
+
+
+
+
+Assignment Task: https://github.com/ProgrammingHero1/B610-Learning-Platform-Assignment
+
+
+Client Side Private repo link: https://github.com/programming-hero-web-course1/b610-learning-platform-client-side-sandidas
+
+
+Server Side Private repo link:   https://github.com/programming-hero-web-course1/b610-lerning-platform-server-side-sandidas
+
+
+
+
+
+
+
+Important Features
+=================
+
+step 1
+========
+1_Create Data (JSON) upload into live server
+2_Setup boilerplate (react (vite), tailwind, toastify, lottie, react-router-dom, react-hot-toast  )
+
+
+step 2
+========
+_ Setup folder structure
+_ Setup Route, [home, 404]
+_ Setup Context API
+_ Auth Component
+_ Component
+_ Private component
+
+step 3
+========
+
+_ Course Website ( Website Name and title )
+_ Header Navebar 
+_ _ Left side:  Logo, site title, Menu [Home, Courses, FAQ, Blog] 
+___ Right side:  toggle theme (dark/ light), User profile / Login (Conditional) )
+
+
+step 4
+=======
+
+_ Setup home page
+_ Course Page [load data from server] With Sidebar
+step 4.1
+=========
+_ Course Single/Details Page [header, description, on image]
+___ right side of the heading will have a button [react-to-pdf package] it will allow people download a pdf with same content
+____ In bottom of course page will have a "Get premium access" button.
+____ click and go private/protected route [ Req num: 10]
+
+step 4.2
+=========
+_ Course Archive Page
+
+
+_Auth Login (google, GitHub, and Email-Password)
+_Auth Registration form [Full name, Photo URL, Email, Password ]  (google, GitHub, and Email-Password)
+
+
+
+
+Key points
+===========
+__Steps
+
+- 
+
+Data Type
+=========
+course ****
+_id:
+title:
+category:
+short_description: 
+description: 
+image:
+price: 
+
+Steps of working
+=================
