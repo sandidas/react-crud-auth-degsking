@@ -4,7 +4,7 @@ import { AuthContext } from '../../context/UserContext';
 
 const Login = () => {
 
-    const { logInbyEmailAndPassword, signinwithGoogle, showAlert } = useContext(AuthContext);
+    const { logInbyEmailAndPassword, signinwithGoogle, showAlert, setLoading } = useContext(AuthContext);
 
 
     const navigate = useNavigate();
@@ -34,7 +34,7 @@ const Login = () => {
 
             })
             .catch(error => {
-                // showAlert('error', "You fuck me. I'll do same");
+                setLoading(false);
                 const errors = error.message;
                 showAlert('danger', errors);
             })
@@ -48,6 +48,7 @@ const Login = () => {
                 navigate('/');
             })
             .catch((error) => {
+                setLoading(false);
                 const errors = error.message + ' | ' + error.code;
                 showAlert('error', errors);
             });

@@ -3,47 +3,47 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/UserContext';
 
 const Registration = () => {
-    const { createNewUser, successMessage, setSuccessMessage, errorMessage, setErrorMessage, signinwithGoogle } = useContext(AuthContext);
+    const { createNewUser, showAlert, signinwithGoogle, setLoading } = useContext(AuthContext);
     // register using Form
     const handleRegister = (event) => {
         console.log('gg');
         event.preventDefault();
-        setErrorMessage(''); // make empty to remove history
-        setSuccessMessage(''); // make empty to remove history
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(name, email, password);
+        if (!name || !email || !password) {
+            showAlert('danger', "Please do not leave any empty fields.");
+            return
+        }
+
         // call g.firebase by context
         createNewUser(email, password)
             .then(result => {
                 // console.log(result);
                 const user = result.user;
-                setSuccessMessage('User created successfully.');
+                showAlert('success', 'User created successfully.');
                 form.reset();
             })
             .catch(error => {
                 // console.log(error);
+                setLoading(false);
                 const errors = error.message + ' | ' + error.code;
-                setErrorMessage(errors);
+                showAlert('danger', errors);
             })
     }
-    // signin using google
+    // signin using google 
     const handleGoogleSignin = () => {
         signinwithGoogle()
             .then((result) => {
                 const user = result.user;
-                setSuccessMessage('Successfully logged in.');
+                showAlert('success', 'Successfully logged in.');
             })
             .catch((error) => {
                 const errors = error.message + ' | ' + error.code;
-                setErrorMessage(errors);
+                showAlert('danger', errors);
             });
     }
-
-
-
 
 
 
@@ -51,20 +51,7 @@ const Registration = () => {
         <div>
             <div className="min-h-screen my-5 flex flex-col  items-center">
 
-                <div className='max-w-md min-w-[70%] text-center'>
-                    {
-                        errorMessage &&
-                        <div className="bg-gradient-to-r from-red-900 via-red-600 to-red-900 p-5 my-5 rounded-md font-medium text-white"> Error!  {errorMessage} </div>
-                    }
-                    {
-                        successMessage &&
-                        <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-5  my-5 rounded-md font-medium text-white"> Success!  {successMessage} </div>
-                    }
-
-
-                </div>
-
-                <div className="min-w-[70%] flex flex-col p-6 rounded-md sm:p-10 dark:bg-gray-800 dark:text-gray-100 shadow-md shadow-slate-600">
+                <div className="min-w-[70%] flex flex-col p-6 rounded-md sm:p-10 dark:bg-gray-900 dark:text-gray-100 shadow shadow-slate-500 border-slate-700">
                     <div className="mb-8 text-center">
                         <h1 className="my-3 text-4xl font-bold">Register Now</h1>
                         <p className="text-sm dark:text-gray-400">Register to access your account</p>
@@ -93,17 +80,17 @@ const Registration = () => {
                         <div className="space-y-4">
                             <div>
                                 <label htmlFor="name" className="block mb-2 text-sm text-slate-400">Full Name</label>
-                                <input type="text" name="name" id="name" placeholder="Full Name" className="w-full text-xl px-3 py-3 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100" />
+                                <input required type="text" name="name" id="name" placeholder="Full Name" className="w-full text-xl px-3 py-3 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100" />
                             </div>
                             <div>
                                 <label htmlFor="email" className="block mb-2 text-sm text-slate-400">Email address</label>
-                                <input type="email" name="email" id="email" placeholder="hello@sandipandas.net" className="w-full text-xl px-3 py-3 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100" />
+                                <input required type="email" name="email" id="email" placeholder="hello@sandipandas.net" className="w-full text-xl px-3 py-3 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100" />
                             </div>
                             <div>
                                 <div className="flex justify-between mb-2">
                                     <label htmlFor="password" className="text-sm text-slate-400">Password</label>
                                 </div>
-                                <input type="password" name="password" id="password" placeholder="* * * * *" className="w-full text-xl px-3 py-3 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100" />
+                                <input required type="password" name="password" id="password" placeholder="* * * * *" className="w-full text-xl px-3 py-3 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100" />
                             </div>
                         </div>
                         <div className="space-y-2">

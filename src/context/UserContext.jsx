@@ -54,13 +54,13 @@ const UserContext = ({ children }) => {
 
     // sign in 
     const logInbyEmailAndPassword = (email, password) => {
-        // setLoading(false);
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
 
     // forget Password
     const requestForgetPassword = (email) => {
-        // setLoading(false);
+        setLoading(true);
         return sendPasswordResetEmail(auth, email);
     }
 
@@ -88,7 +88,7 @@ const UserContext = ({ children }) => {
     }, [])
 
     // pass this by context
-    const authInfo = { createNewUser, logInbyEmailAndPassword, requestForgetPassword, user, userSignout, signinwithGoogle, loading, showAlert }
+    const authInfo = { createNewUser, logInbyEmailAndPassword, requestForgetPassword, user, userSignout, signinwithGoogle, loading, showAlert, loading, setLoading }
 
     return (
         <AuthContext.Provider value={authInfo}>
