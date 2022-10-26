@@ -65,7 +65,7 @@ const Header = () => {
     return (
         <>
 
-            <header className="p-4 dark:bg-gray-900 dark:text-gray-100 bg-slate-100">
+            <header className="p-4 dark:bg-gray-900 dark:text-gray-100 bg-slate-100 top-0 sticky">
                 <div className="container flex justify-between h-16 mx-auto w-[90%]">
                     <Link rel="noopener noreferrer" to="/" aria-label="Back to homepage" className="flex items-center p-2 text-4xl font-extrabold">
                         <HiColorSwatch />

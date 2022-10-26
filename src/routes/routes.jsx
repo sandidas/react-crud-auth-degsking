@@ -30,11 +30,11 @@ export const router = createBrowserRouter([
             {
                 path: '/courses',
                 element:<CourseContextComponent> <Courses></Courses> </CourseContextComponent>,
+                // loader: () => fetch('https://degsking-ass.vercel.app/courses')
             },
             {
                 path: '/course/details/:id',
                 loader: ({ params }) => loadIndividualCourse(`${params.id}`),
-                // element:<LoadingSpinner> <CourseSingle></CourseSingle> </LoadingSpinner> ,
                 element:<CourseContextComponent> <CourseSingle></CourseSingle> </CourseContextComponent>,
 
             },

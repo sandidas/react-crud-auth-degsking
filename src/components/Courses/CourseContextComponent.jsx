@@ -12,7 +12,6 @@ export const CourseContext = createContext({})
 const CourseContextComponent = ({ children }) => {
     const { loading, setLoading, showAlert } = useContext(AuthContext);
     const [allCourse, setAllCourse] = useState([]);
-
     // async practice
     const loadDatass = async () => {
         const url = `https://degsking-ass.vercel.app/courses`;
@@ -30,7 +29,6 @@ const CourseContextComponent = ({ children }) => {
     useEffect(() => {
         setLoading(true);
         loadDatass();
-
     }, []);
 
 
@@ -45,7 +43,7 @@ const CourseContextComponent = ({ children }) => {
                         <div className='md:col-span-5 xl:col-span-6'>
                             {children}
                         </div>
-                        <div className='md:col-span-3 xl:col-span-2 h-fit sticky top-0'>
+                        <div className='md:col-span-3 xl:col-span-2 h-fit sticky top-32'>
                             <RightSidebar></RightSidebar>
                         </div>
 
