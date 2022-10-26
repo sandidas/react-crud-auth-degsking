@@ -6,8 +6,11 @@ import Registration from "../components/Auth/Registration";
 import Login from "../components/Auth/Login";
 import ForgetPassword from "../components/Auth/ForgetPassword";
 import NotForLoggedInUser from "./NotForLoggedInUser";
+import { loadCourses, loadIndividualCourse } from "../utilities/utilities";
+import CourseSingle from "../components/Courses/CourseSingle";
+import CourseContextComponent from "../components/Courses/CourseContextComponent";
 import Courses from "../components/Courses/Courses";
-import { loadCourses } from "../utilities/utilities";
+
 
 export const router = createBrowserRouter([
     {
@@ -25,8 +28,13 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/courses',
-                loader: loadCourses,
-                element: <Courses></Courses>,
+                element:<CourseContextComponent> <Courses></Courses> </CourseContextComponent> ,
+            },
+            {
+                path: '/course/details/:id',
+                loader: ({ params }) => loadIndividualCourse(`${params.id}`),
+                element: <CourseSingle></CourseSingle>,
+
             },
             {
                 path: '/registration',

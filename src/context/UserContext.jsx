@@ -104,6 +104,7 @@ const UserContext = ({ children }) => {
     // pass this by context
     const authInfo = { createNewUser, updateUserProfile, verifyEmail, logInbyEmailAndPassword, requestForgetPassword, signInWithGithub, user, userSignout, signinwithGoogle, showAlert, loading, setLoading }
 
+   
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
