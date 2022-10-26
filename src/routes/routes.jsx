@@ -7,6 +7,7 @@ import Login from "../components/Auth/Login";
 import ForgetPassword from "../components/Auth/ForgetPassword";
 import NotForLoggedInUser from "./NotForLoggedInUser";
 import Courses from "../components/Courses/Courses";
+import { loadCourses } from "../utilities/utilities";
 
 export const router = createBrowserRouter([
     {
@@ -24,6 +25,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/courses',
+                loader: loadCourses,
                 element: <Courses></Courses>,
             },
             {

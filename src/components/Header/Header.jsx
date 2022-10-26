@@ -96,6 +96,14 @@ const Header = () => {
                                 Blogs
                             </NavLink>
                         </li>
+                        <li className="flex">
+                            <NavLink to="/faq" className={({ isActive }) => (isActive ?
+                                "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-purple-400 dark:border-violet-400 text-purple-800 hover:bg-purple-700 hover:text-white rounded-md  font-medium"
+                                :
+                                "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent hover:bg-purple-700 hover:text-white rounded-md  font-medium")} >
+                                FAQ
+                            </NavLink>
+                        </li>
                     </ul>
                     {
                         !user?.uid ?
