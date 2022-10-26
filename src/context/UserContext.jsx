@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 //import google firebase auth
-import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth'
+import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth'
 import app from '../firebase/firebase.config';
 // React Hot Toast
 import { ToastContainer, toast } from 'react-toastify';
@@ -8,13 +8,12 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export const AuthContext = createContext({})
 const auth = getAuth(app); // call google firebase auth
+
 const UserContext = ({ children }) => {
     const [user, setUser] = useState('');
     const [loading, setLoading] = useState(true);
 
-
-
-
+    // Aleart system
     const showAlert = (type, message) => {
         if (type == "success") {
             toast.success(message, {
@@ -37,9 +36,18 @@ const UserContext = ({ children }) => {
             });
         }
     }
-    //====== SIgnin by Google
-    const googleProvider = new GoogleAuthProvider();
 
+
+    const googleProvider = new GoogleAuthProvider(); // google auth provider
+    const gitHubProvider = new GithubAuthProvider(); // github auth provider
+
+    // github sighnin
+    const signInWithGithub = () => {
+        return signInWithPopup(auth, gitHubProvider);
+    }
+
+
+    //====== SIgnin by Google
     const signinwithGoogle = () => {
         setLoading(true);
         return signInWithPopup(auth, googleProvider);
@@ -48,8 +56,14 @@ const UserContext = ({ children }) => {
 
     // create new user by g. firebase
     const createNewUser = (email, password) => {
-        setLoading(true);
+        //   setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
+    }
+    const updateUserProfile = (profile) => {
+        return updateProfile(auth.currentUser, profile);
+    }
+    const verifyEmail = () => {
+        return sendEmailVerification(auth.currentUser);
     }
 
     // sign in 
@@ -88,7 +102,7 @@ const UserContext = ({ children }) => {
     }, [])
 
     // pass this by context
-    const authInfo = { createNewUser, logInbyEmailAndPassword, requestForgetPassword, user, userSignout, signinwithGoogle, loading, showAlert, loading, setLoading }
+    const authInfo = { createNewUser, updateUserProfile, verifyEmail, logInbyEmailAndPassword, requestForgetPassword, signInWithGithub, user, userSignout, signinwithGoogle, showAlert, loading, setLoading }
 
     return (
         <AuthContext.Provider value={authInfo}>

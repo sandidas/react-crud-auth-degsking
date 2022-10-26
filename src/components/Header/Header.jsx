@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/UserContext';
 import { checkCurrentTheme, setCurrentTheme } from '../../utilities/utilities';
 import { HiColorSwatch } from "react-icons/hi"; // Logo
@@ -44,7 +44,7 @@ const Header = () => {
             setTheme('dark');
             setCurrentTheme('dark');
         }
-        console.log(currentTheme);
+        // console.log(currentTheme);
         //  setTheme(theme === 'dark' ? 'light' : 'dark');
     }
 
@@ -73,27 +73,36 @@ const Header = () => {
                     </Link>
                     <ul className="items-stretch hidden space-x-3 lg:flex">
                         <li className="flex">
-                            <Link rel="noopener noreferrer" to="/" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400">Home</Link>
+                            <NavLink to="/home" className={({ isActive }) => (isActive ?
+                                "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-purple-400 dark:border-violet-400 text-purple-800hover:bg-purple-700 hover:text-white rounded-md  font-medium"
+                                :
+                                "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent hover:bg-purple-700 hover:text-white rounded-md font-medium")} >
+                                Home
+                            </NavLink>
                         </li>
                         <li className="flex">
-                            <a rel="noopener noreferrer" to="#" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent">Link</a>
+                            <NavLink to="courses" className={({ isActive }) => (isActive ?
+                                "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-purple-400 dark:border-violet-400 text-purple-800 hover:bg-purple-700 hover:text-white rounded-md  font-medium"
+                                :
+                                "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent hover:bg-purple-700 hover:text-white rounded-md  font-medium")} >
+                                Courses
+                            </NavLink>
                         </li>
                         <li className="flex">
-                            <a rel="noopener noreferrer" to="#" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent">Link</a>
-                        </li>
-                        <li className="flex">
-                            <Link rel="noopener noreferrer" to="#" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent">Link</Link>
-                        </li>
-                        <li className="flex">
-                            <Link rel="noopener noreferrer" to="/profile/" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent">Profile</Link>
+                            <NavLink to="/blog" className={({ isActive }) => (isActive ?
+                                "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-purple-400 dark:border-violet-400 text-purple-800 hover:bg-purple-700 hover:text-white rounded-md  font-medium"
+                                :
+                                "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent hover:bg-purple-700 hover:text-white rounded-md  font-medium")} >
+                                Blogs
+                            </NavLink>
                         </li>
                     </ul>
                     {
                         !user?.uid ?
                             // if id not found / not logged in
                             <div className="items-center flex-shrink-0 hidden lg:flex">
-                                <Link to="/login" className="self-center px-8 py-3 rounded">Sign in</Link>
-                                <Link to="/registration" className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900">Sign up</Link>
+                                <Link to="/login" className="self-center px-8 py-3 rounded">Log In</Link>
+                                <Link to="/registration" className="self-center px-8 rounded-md py-3 font-semibold focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400 hover:bg-purple-800 hover:text-white bg-purple-600 text-white">Register</Link>
                             </div>
                             :
                             // ID found / logged in

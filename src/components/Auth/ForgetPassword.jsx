@@ -30,7 +30,7 @@ const ForgetPassword = () => {
         <div>
             <div>
 
-                <div className="min-h-screen my-5 flex flex-col  items-center">
+                <div className="my-5 flex flex-col  items-center">
                     <div className="min-w-[70%] flex flex-col p-6 rounded-md sm:p-10 dark:bg-gray-900 dark:text-gray-100 shadow shadow-slate-500 border-slate-700">
                         <div className="mb-8 text-center">
                             <h1 className="my-3 text-4xl font-bold">Forget Password</h1>
@@ -46,7 +46,7 @@ const ForgetPassword = () => {
                             </div>
                             <div className="space-y-2">
 
-                                <button className="w-full px-8 py-3 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900 hover:bg-purple-700 hover:text-white">Request Reset Password</button>
+                                <button className="flex items-center justify-center w-full p-4 my-2 space-x-4  rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400 hover:bg-purple-800 hover:text-white bg-purple-600 text-white">Request Reset Password</button>
 
 
                                 <p className="px-6 text-sm text-center dark:text-gray-400">Don't Have an account yet?

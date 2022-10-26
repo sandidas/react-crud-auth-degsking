@@ -6,6 +6,7 @@ import Registration from "../components/Auth/Registration";
 import Login from "../components/Auth/Login";
 import ForgetPassword from "../components/Auth/ForgetPassword";
 import NotForLoggedInUser from "./NotForLoggedInUser";
+import Courses from "../components/Courses/Courses";
 
 export const router = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
             {
                 path: '/home',
                 element: <Home></Home>,
+            },
+            {
+                path: '/courses',
+                element: <Courses></Courses>,
             },
             {
                 path: '/registration',
