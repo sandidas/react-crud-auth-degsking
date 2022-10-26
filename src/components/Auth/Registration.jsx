@@ -80,10 +80,6 @@ const Registration = () => {
             });
     }
 
-
-
-
-
     return (
         <div>
             <div className="my-5 flex flex-col  items-center">

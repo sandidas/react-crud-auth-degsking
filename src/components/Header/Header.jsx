@@ -65,7 +65,7 @@ const Header = () => {
     return (
         <>
 
-            <header className="p-4 dark:bg-gray-900 dark:text-gray-100 bg-white">
+            <header className="p-4 dark:bg-gray-900 dark:text-gray-100 bg-slate-100">
                 <div className="container flex justify-between h-16 mx-auto w-[90%]">
                     <Link rel="noopener noreferrer" to="/" aria-label="Back to homepage" className="flex items-center p-2 text-4xl font-extrabold">
                         <HiColorSwatch />
@@ -109,7 +109,7 @@ const Header = () => {
                         !user?.uid ?
                             // if id not found / not logged in
                             <div className="items-center flex-shrink-0 hidden lg:flex">
-                                <Link to="/login" className="self-center px-8 py-3 rounded">Log In</Link>
+                                <Link to="/login" className="self-center px-8 py-2 mr-3 rounded-md font-semibold border-4 border-purple-500 hover:bg-purple-800 hover:border-purple-800 hover:text-white">Log In</Link>
                                 <Link to="/registration" className="self-center px-8 rounded-md py-3 font-semibold focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400 hover:bg-purple-800 hover:text-white bg-purple-600 text-white">Register</Link>
                             </div>
                             :
@@ -118,7 +118,7 @@ const Header = () => {
                                 {
                                     user?.photoURL ?
                                         // Photo found
-                                        <img alt="" className="w-12 h-12 rounded-full ring-2 ring-offset-4 dark:bg-gray-500 ring-gray-700 ring-offset-gray-800" src={user.photoURL} />
+                                        <img alt="" className="w-12 h-12 rounded-full ring-2 ring-offset-4 dark:bg-gray-500 ring-gray-700 ring-offset-purple-800" src={user.photoURL} />
                                         :
                                         // photo not found
                                         <div className='px-5 py-3 rounded-full bg-red-800 font-bold'>
@@ -126,7 +126,7 @@ const Header = () => {
                                         </div>
                                 }
 
-                                <button onClick={handleUserSignout} className="self-center px-8 py-3 rounded bg-yellow-600 hover:bg-yellow-700">Log Out</button>
+                                <button onClick={handleUserSignout} className="self-center px-8 rounded-md py-3 font-semibold focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400 hover:bg-purple-800 hover:text-white bg-purple-600 text-white">Log Out</button>
                             </div>
                     }
 

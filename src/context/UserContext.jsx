@@ -46,7 +46,6 @@ const UserContext = ({ children }) => {
         return signInWithPopup(auth, gitHubProvider);
     }
 
-
     //====== SIgnin by Google
     const signinwithGoogle = () => {
         setLoading(true);

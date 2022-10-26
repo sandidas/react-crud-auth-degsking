@@ -7,12 +7,10 @@ const LoadingSpinner = () => {
     const location = useLocation();
     if (loading) {
         return (
-            <div>
-                <div className="flex items-center justify-center space-x-2 min-h-[200px]">
-                    <div className="w-4 h-4 rounded-full animate-pulse dark:bg-violet-400"></div>
-                    <div className="w-4 h-4 rounded-full animate-pulse dark:bg-violet-400"></div>
-                    <div className="w-4 h-4 rounded-full animate-pulse dark:bg-violet-400"></div>
-                </div>
+            <div className="flex items-center justify-center space-x-2 min-h-[200px] h-screen">
+                <div className="w-4 h-4 rounded-full animate-pulse bg-purple-800 dark:bg-violet-400"></div>
+                <div className="w-4 h-4 rounded-full animate-pulse bg-purple-800 dark:bg-violet-400"></div>
+                <div className="w-4 h-4 rounded-full animate-pulse bg-purple-800 dark:bg-violet-400"></div>
             </div>
         )
     } else {
