@@ -6,10 +6,11 @@ import Registration from "../components/Auth/Registration";
 import Login from "../components/Auth/Login";
 import ForgetPassword from "../components/Auth/ForgetPassword";
 import NotForLoggedInUser from "./NotForLoggedInUser";
-import { loadCourses, loadIndividualCourse } from "../utilities/utilities";
+import { loadIndividualCourse } from "../utilities/utilities";
 import CourseSingle from "../components/Courses/CourseSingle";
 import CourseContextComponent from "../components/Courses/CourseContextComponent";
 import Courses from "../components/Courses/Courses";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
 
 export const router = createBrowserRouter([
@@ -28,12 +29,13 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/courses',
-                element:<CourseContextComponent> <Courses></Courses> </CourseContextComponent> ,
+                element:<CourseContextComponent> <Courses></Courses> </CourseContextComponent>,
             },
             {
                 path: '/course/details/:id',
                 loader: ({ params }) => loadIndividualCourse(`${params.id}`),
-                element: <CourseSingle></CourseSingle>,
+                // element:<LoadingSpinner> <CourseSingle></CourseSingle> </LoadingSpinner> ,
+                element:<CourseContextComponent> <CourseSingle></CourseSingle> </CourseContextComponent>,
 
             },
             {

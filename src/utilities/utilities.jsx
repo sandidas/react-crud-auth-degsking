@@ -1,4 +1,22 @@
-import { redirect } from "react-router-dom"
+import React from 'react';
+import { useContext } from 'react';
+import UserContext from '../context/UserContext';
+
+
+
+
+
+
+
+const utilities = () => {
+    const {loading, setLoading } = useContext(UserContext);
+    return (
+        <div>
+
+        </div>
+    );
+};
+
 
 export const setCurrentTheme = (theme) => {
     localStorage.setItem('isDarkMode', theme)
@@ -8,18 +26,15 @@ export const checkCurrentTheme = () => {
     return localStorage.getItem('isDarkMode')
 }
 
- 
+
 
 export const loadCourses = async () => {
+    setLoading(true);
     const apiData = await fetch(`https://degsking-ass.vercel.app/courses`);
     const data = await apiData.json();
     return data;
-console.log(data);
+    console.log(data);
 }
-
-
-
-
 
 export const loadIndividualCourse = async (id) => {
     const url = `https://degsking-ass.vercel.app/course/details/${id}`;
@@ -30,6 +45,6 @@ export const loadIndividualCourse = async (id) => {
         return data;
     } catch (error) {
         return false;
-        console.log("Not Found ", error);
     }
 }
+export default utilities;

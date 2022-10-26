@@ -4,26 +4,22 @@ import { createContext } from 'react';
 import { useState } from 'react';
 import { AuthContext } from '../../context/UserContext';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import RightSidebar from '../RightSidebar/RightSidebar';
 
 
 export const CourseContext = createContext({})
 
 const CourseContextComponent = ({ children }) => {
     const { loading, setLoading, showAlert } = useContext(AuthContext);
+    const [allCourse, setAllCourse] = useState([]);
 
-
-    const [courses, setCourses] = useState([]);
-
-
-
-    const [countries, setCountries] = useState([]);
     // async practice
     const loadDatass = async () => {
         const url = `https://degsking-ass.vercel.app/courses`;
         try {
             const res = await fetch(url);
             const data = await res.json();
-            setCourses(data);
+            setAllCourse(data);
             setLoading(false);
         } catch (error) {
             setLoading(false);
@@ -38,17 +34,25 @@ const CourseContextComponent = ({ children }) => {
     }, []);
 
 
-
-    const courseInfo = { courses };
+    const courseInfo = { allCourse };
     return (
         <CourseContext.Provider value={courseInfo}>
             {
                 loading ? <LoadingSpinner />
                     :
-                    children
-            }
-            {/* {children} */}
 
+                    <div className='grid grid-cols-1 md:grid-cols-8 gap-5'>
+                        <div className='md:col-span-5 xl:col-span-6'>
+                            {children}
+                        </div>
+                        <div className='md:col-span-3 xl:col-span-2 h-fit sticky top-0'>
+                            <RightSidebar></RightSidebar>
+                        </div>
+
+                    </div>
+
+
+            }
         </CourseContext.Provider>
     );
 };
