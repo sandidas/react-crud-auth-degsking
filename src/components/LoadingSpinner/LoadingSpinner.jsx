@@ -2,10 +2,9 @@ import React, { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AuthContext } from '../../context/UserContext';
 
-const LoadingSpinner = ({ children }) => {
-    const { user, loading, setLoading } = useContext(AuthContext);
+const LoadingSpinner = () => {
+    const { user, loading } = useContext(AuthContext);
     const location = useLocation();
-    console.log(loading);
     if (loading) {
         return (
             <div>
@@ -17,8 +16,7 @@ const LoadingSpinner = ({ children }) => {
             </div>
         )
     } else {
-        setLoading(false);
-        return children;
+        return <Navigate to='/login' state={{ from: location }} replace  ></Navigate>
     }
 };
 
