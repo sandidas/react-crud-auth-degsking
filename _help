@@ -96,19 +96,44 @@ __ 6 _ Courses
 __ 7 _ Courses page 2 column ( sidebar (course categories) , content )
 __ 8 _ Course Details Page (header, Description, image, )
 __ 9 _ single course top after title _ create pdf button  react-to-pdf package
-__
-
-Key points Remaining
-=====================
-
-
 __ 10 _ single course bottom after content - Get premium access - 
         private route redirects to the login page - 
         After login - redirected to the checkout page
-__ 11 _ ?
-__
+__ 11 _ Redirect
+Bonus
+=======
+__ 1 _ 12 Github commits 
+__ 2 _ Mobile & desktop Responsive
+__ 3 _ Display errors
+__ 5 _ Meaningful readme.md
+__ 6 _ 404 page
+__ 7 _ Color selection is meaningful
+__ 8 _ Clean and organized Code
 
-- 
+Optional 
+=========
+__ 1 _ Password reset
+__ 1 _ active route (Nav Bar)
+__ 1 _ react-hook-form (Profile page done)
+__ 6 _ dark/light theme toggle
+__ 7 _ stylish footer
+__ 8 _ profile image (edit profile)
+__ 9 _ Creativity (Never ended)
+Additional 
+==========
+__ 1 _ host image anywhere
+__ 2 _ tailwind
+__ 3 _ Firebase Hosting
+__ 4 _ Vercel - Server Side
+
+Key points Remaining
+=====================
+__ Blog
+__ Header nav - Responive
+__ Home Page
+__ react packages ( react-icons, react-image-magnify, react-awesome-slider, react-loader, react-leaflet)
+__ FAQ 
+
 
 Data Type
 =========

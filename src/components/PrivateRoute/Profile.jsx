@@ -4,10 +4,41 @@ import { useContext } from 'react';
 import { AuthContext } from '../../context/UserContext';
 
 const Profile = () => {
+    const { updateUserProfile, updateUserEmail, user, showAlert, setLoading } = useContext(AuthContext);
     const { label, register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
-    const { user } = useContext(AuthContext);
-    console.log(user);
+    // const onSubmit = data => console.log(data);
+    const onSubmit = data => {
+
+        const profile = {
+            displayName: data.name,
+            photoURL: data.photoURL
+        }
+        const profileEmail = data.email
+
+        updateUserProfile(profile)
+            .then(() => {
+                handleEmailUpdate(profileEmail)
+                showAlert('success', 'Success. Profile Updated');
+            })
+            .catch(error => {
+                setLoading(false);
+                const errors = error.message;
+                showAlert('danger', errors);
+            });
+    };
+
+    const handleEmailUpdate = (profileEmail) => {
+        updateUserEmail(profileEmail)
+            .then(() => {
+                showAlert('success', 'Success. Email address Updated');
+            })
+            .catch(error => {
+                setLoading(false);
+                const errors = error.message;
+                showAlert('danger', errors);
+            });
+    }
+
     return (
         <div className='grid grid-cols-8 mx-auto gap-5'>
             <div className='col-span-3 dark:bg-gray-900 dark:text-white bg-white text-dark
@@ -17,7 +48,7 @@ border shadow-lg rounded-lg dark:border-none flex justify-center items-center'>
                 {
                     user?.photoURL ?
                         // Photo found
-                        <img alt="" className="max-w-2xl rounded-full ring-2 ring-offset-4 dark:bg-gray-500 ring-gray-700 ring-offset-purple-800" src={user.photoURL} />
+                        <img alt="" className="max-w-[80%] rounded-full ring-2 ring-offset-4 dark:bg-gray-500 ring-gray-700 ring-offset-purple-800" src={user.photoURL} />
                         :
                         // photo not found
 
@@ -38,7 +69,7 @@ border shadow-lg rounded-lg dark:border-none">
                         <input className='w-full text-xl px-3 py-3 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100' defaultValue={user.displayName} {...register("name")} />
                     </div>
                     <div>
-                        <label htmlFor="email " className="text-sm text-slate-400">Email</label>
+                        <label htmlFor="email" className="text-sm text-slate-400">Email</label>
                         <input className='w-full text-xl px-3 py-3 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100' defaultValue={user.email} {...register("email")} />
                     </div>
                     <div>

@@ -28,7 +28,6 @@ const Registration = () => {
                 handleUpdateUserProfile(name, photoURL);
                 handleEmailVerification();
                 const user = result.user;
-                showAlert('success', 'Please check your email for verification.');
                 navigate(from, { replace: true });
 
             })
@@ -45,13 +44,26 @@ const Registration = () => {
             photoURL: photoURL
         }
         updateUserProfile(profile)
-            .then(() => { })
-            .catch(error => console.error(error));
+            .then(() => {
+                showAlert('success', 'Success! Profile Updated');
+            })
+            .catch(error => {
+                setLoading(false);
+                const errors = error.message + ' | ' + error.code;
+                showAlert('danger', errors);
+            }
+            );
     }
     const handleEmailVerification = () => {
         verifyEmail()
-            .then(() => { })
-            .catch(error => console.error(error));
+            .then(() => {
+                showAlert('success', 'Success! Check email for verification');
+            })
+            .catch(error => {
+                setLoading(false);
+                const errors = error.message + ' | ' + error.code;
+                showAlert('danger', errors);
+            });
     }
 
 

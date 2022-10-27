@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 //import google firebase auth
-import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth'
+import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateEmail, updateProfile } from 'firebase/auth'
 import app from '../firebase/firebase.config';
 // React Hot Toast
 import { ToastContainer, toast } from 'react-toastify';
@@ -61,6 +61,9 @@ const UserContext = ({ children }) => {
     const updateUserProfile = (profile) => {
         return updateProfile(auth.currentUser, profile);
     }
+    const updateUserEmail = (profileEmail) => {
+        return updateEmail(auth.currentUser, `${profileEmail}`);
+    }
     const verifyEmail = () => {
         return sendEmailVerification(auth.currentUser);
     }
@@ -101,9 +104,9 @@ const UserContext = ({ children }) => {
     }, [])
 
     // pass this by context
-    const authInfo = { createNewUser, updateUserProfile, verifyEmail, logInbyEmailAndPassword, requestForgetPassword, signInWithGithub, user, userSignout, signinwithGoogle, showAlert, loading, setLoading }
+    const authInfo = { createNewUser, updateUserProfile, updateUserEmail, verifyEmail, logInbyEmailAndPassword, requestForgetPassword, signInWithGithub, user, userSignout, signinwithGoogle, showAlert, loading, setLoading }
 
-   
+
     return (
         <AuthContext.Provider value={authInfo}>
             {children}

@@ -3,7 +3,7 @@
 Hi Upcoming kings,
 
 That's an absolute pleasure; We have developed a way where you can learn programming without any programming-related degree. 
-NO! yes, the answer is no. You don't need to pay us to learn to program. 
+NO! yes, the answer is no. You don't need to pay us to learn. 
 
 You are welcome to the planet of programming.
 
