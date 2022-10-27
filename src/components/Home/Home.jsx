@@ -10,7 +10,7 @@ const Home = () => {
 
             <section className="dark:bg-gray-800 dark:text-gray-100">
                 <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
-                    <div className="flex items-center justify-center p-6 mt-8">
+                    <div className="flex items-center justify-center p-6 mt-8 z-0">
                         <Player
                             src={animationData}
                             className=""
