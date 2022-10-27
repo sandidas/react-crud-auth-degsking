@@ -1,9 +1,16 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { useForm } from "react-hook-form";
+import { useContext } from 'react';
+import { AuthContext } from '../../context/UserContext';
 
 const CourseSingleCheckout = () => {
 
     const course = useLoaderData();
+    const { label, register, handleSubmit, watch, formState: { errors } } = useForm();
+    const onSubmit = data => console.log(data);
+    const { user } = useContext(AuthContext);
+    console.log(user);
     return (
 
         <div className='grid grid-cols-1 md:grid-cols-8 gap-5'>
@@ -15,7 +22,25 @@ border shadow-lg rounded-lg dark:border-none">
                         FREE CHECKOUT
                     </h1>
 
+                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                        {/* register your input into the hook by invoking the "register" function */}
+                        <div>
+                            <label htmlFor="name" className="text-sm text-slate-400">Full Name</label>
+                            <input className='w-full text-xl px-3 py-3 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100' defaultValue={user.displayName} {...register("name")} />
+                        </div>
 
+                        <div>
+                            <label htmlFor="name" className="text-sm text-slate-400">Full Name</label>
+                            <input className='w-full text-xl px-3 py-3 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100' defaultValue={user.displayName} {...register("name")} />
+                        </div>
+
+
+
+
+                        <input type="submit" className='flex items-center justify-center w-full p-4 my-2 space-x-4  rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400 hover:bg-purple-800 hover:text-white bg-purple-600 text-white' />
+
+                        {errors.exampleRequired && <span>This field is required</span>}
+                    </form>
 
 
                 </div>
