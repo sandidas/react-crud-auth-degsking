@@ -9,7 +9,13 @@ import { HiColorSwatch } from "react-icons/hi"; // Logo
 const Header = () => {
     const { user, userSignout, showAlert } = useContext(AuthContext);
     const [theme, setTheme] = useState(false);
+    const [mobNavigation, setMobNavigation] = useState(false);
     const navigate = useNavigate();
+
+    const handleMobileNavigation = () => {
+        setMobNavigation(!mobNavigation);
+    }
+    console.log(mobNavigation);
 
     useEffect(() => {
         const currentTheme = checkCurrentTheme();
@@ -65,9 +71,9 @@ const Header = () => {
     return (
         <>
 
-            <header className="p-4 dark:bg-gray-900 dark:text-gray-100 bg-slate-100 top-0 sticky">
+            <header className="p-4 dark:bg-gray-900 dark:text-gray-100 bg-slate-100 top-0 sticky backdrop-blur-2xl transition-colors duration-500">
                 <div className="flex justify-between h-16 mx-auto w-[90%]">
-                    <Link rel="noopener noreferrer" to="/" aria-label="Back to homepage" className="flex items-center p-2 text-4xl font-extrabold">
+                    <Link to="/" aria-label="Back to homepage" className="flex items-center p-2 text-4xl font-extrabold">
                         <HiColorSwatch />
                         DegsKing
                     </Link>
@@ -139,28 +145,163 @@ const Header = () => {
                             :
                             // ID found / logged in
                             <div className="items-center flex-shrink-0 hidden lg:flex gap-5">
-                                {
-                                    user?.photoURL ?
-                                        // Photo found
-                                        <Link to="/profile"><img alt="" className="w-12 h-12 rounded-full ring-2 ring-offset-4 dark:bg-gray-500 ring-gray-700 ring-offset-purple-800" src={user.photoURL} /></Link>
-                                        :
-                                        // photo not found
-                                        <Link to="/profile">
-                                            <div className='px-5 py-3 rounded-full bg-red-800 font-bold'>
-                                                ?
+                                <div className="flex items-center p-2 space-x-4">
+                                    {
+                                        user?.photoURL ?
+                                            <Link to='/profile'>
+                                                <img src={user.photoURL} alt="" className="w-12 h-12 rounded-full dark:bg-gray-500" />
+                                            </Link>
+                                            :
+                                            <Link to="/profile">
+                                                <div className='px-5 py-3 rounded-full bg-red-800 font-bold'>
+                                                    ?
+                                                </div>
+                                            </Link>
+
+                                    }
+                                    {
+                                        user?.uid ?
+                                            <div>
+                                                <h2 className="text-lg font-semibold"> {user?.displayName} </h2>
+                                                <span className="flex items-center space-x-1">
+                                                    <NavLink to='/profile' className="text-xs hover:underline dark:text-gray-400">View profile</NavLink>
+                                                </span>
                                             </div>
-                                        </Link>
-                                }
+                                            : ""
+
+                                    }
+
+                                </div>
 
                                 <button onClick={handleUserSignout} className="self-center px-8 rounded-md py-3 font-semibold focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400 hover:bg-purple-800 hover:text-white bg-purple-600 text-white">Log Out</button>
                             </div>
                     }
 
-                    <button className="p-4 lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 dark:text-gray-100">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
+                    <button className="p-4 lg:hidden" onClick={handleMobileNavigation}>
+                        {!mobNavigation ?
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 dark:text-gray-100">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                            :
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        }
                     </button>
+                </div>
+                {/* Mobile Navigation  */}
+                <div className={mobNavigation ? 'relative' : 'hidden'} onClick={() => setMobNavigation(!mobNavigation)}>
+                    <div className="fixed top-[100px] right-0  p-3 space-y-2 w-full z-40  dark:bg-gray-900 dark:text-gray-100 bg-gray-200">
+                        <button className='p-3 flex' onClick={handleMobileNavigation}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                            </svg> <span className='px-3 text-red-600 font-bold'>Close</span>
+                        </button>
+
+                        <div className="flex items-center p-2 space-x-4">
+
+                            {
+                                user?.uid ?
+                                    <div>
+                                        {
+                                            user?.photoURL ?
+                                                <Link to='/profile'>
+                                                    <img src={user.photoURL} alt="" className="w-12 h-12 rounded-full dark:bg-gray-500" />
+                                                </Link>
+                                                :
+                                                <Link to="/profile">
+                                                    <div className='px-5 py-3 rounded-full bg-red-800 font-bold'>
+                                                        ?
+                                                    </div>
+                                                </Link>
+
+                                        }
+                                    </div>
+                                    :
+                                    ""
+                            }
+
+                            {
+                                user?.uid ?
+                                    <div>
+                                        <h2 className="text-lg font-semibold"> {user?.displayName} </h2>
+                                        <span className="flex items-center space-x-1">
+                                            <NavLink to='/profile' className="text-xs hover:underline dark:text-gray-400">View profile</NavLink>
+                                        </span>
+                                    </div>
+                                    : ""
+
+                            }
+
+                        </div>
+
+
+                        <div className="divide-y divide-gray-700">
+                            <ul className="pt-2 pb-4 space-y-2 text-sm">
+
+                                <li className="dark:bg-gray-800 dark:text-gray-50">
+                                    <NavLink to='/home'
+                                        className={({ isActive }) => (isActive ?
+                                            "flex items-center p-4 space-x-3 rounded-md font-bold text-purple-700 dark:text-yellow-400"
+                                            :
+                                            "flex items-center p-4 space-x-3 rounded-md")}>
+                                        <span>Home</span>
+                                    </NavLink>
+                                </li>
+
+                                <li className="dark:bg-gray-800 dark:text-gray-50">
+                                    <NavLink to='/courses'
+                                        className={({ isActive }) => (isActive ?
+                                            "flex items-center p-4 space-x-3 rounded-md font-bold text-purple-700 dark:text-yellow-400"
+                                            :
+                                            "flex items-center p-4 space-x-3 rounded-md")}>
+                                        <span>Courses</span>
+                                    </NavLink>
+                                </li>
+
+                                <li className="dark:bg-gray-800 dark:text-gray-50">
+                                    <NavLink to='/blog'
+                                        className={({ isActive }) => (isActive ?
+                                            "flex items-center p-4 space-x-3 rounded-md font-bold text-purple-700 dark:text-yellow-400"
+                                            :
+                                            "flex items-center p-4 space-x-3 rounded-md")}>
+                                        <span>Blog</span>
+                                    </NavLink>
+                                </li>
+
+                                <li className="dark:bg-gray-800 dark:text-gray-50">
+                                    <NavLink to='/faq'
+                                        className={({ isActive }) => (isActive ?
+                                            "flex items-center p-4 space-x-3 rounded-md font-bold text-purple-700 dark:text-yellow-400"
+                                            :
+                                            "flex items-center p-4 space-x-3 rounded-md")}>
+                                        <span>FAQ</span>
+                                    </NavLink>
+                                </li>
+
+
+
+                            </ul>
+                            <ul className="pt-4 pb-2 space-y-2 text-sm">
+                                {
+                                    user?.uid ?
+                                        <li> <button className="flex items-center p-4 space-x-3 rounded-md" onClick={handleUserSignout} > Log Out </button> </li>
+                                        :
+                                        <>
+                                            <li> <NavLink to='/login' className="flex items-center p-4 space-x-3 rounded-md"> Log In </NavLink> </li>
+                                            <li> <NavLink to='/registration' className="flex items-center p-4 space-x-3 rounded-md"> Register </NavLink> </li>
+                                        </>
+                                }
+
+
+
+
+
+
+
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </header>
 

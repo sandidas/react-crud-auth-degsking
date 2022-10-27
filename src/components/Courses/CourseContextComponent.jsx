@@ -43,7 +43,7 @@ const CourseContextComponent = ({ children }) => {
                         <div className='md:col-span-5 xl:col-span-6'>
                             {children}
                         </div>
-                        <div className='md:col-span-3 xl:col-span-2 h-fit sticky top-32'>
+                        <div className='md:col-span-3 xl:col-span-2 h-fit sticky top-32 -z-50'>
                             <RightSidebar></RightSidebar>
                         </div>
 

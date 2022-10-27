@@ -6,7 +6,7 @@ import { CourseContext } from '../Courses/CourseContextComponent';
 const RightSidebar = () => {
     const { allCourse } = useContext(CourseContext);
     return (
-        <aside className="w-full p-6 dark:bg-gray-900 dark:text-gray-100 border dark:border-none	bg-gray-100">
+        <aside className="w-full p-6 dark:bg-gray-900 dark:text-gray-100 border dark:border-none bg-gray-100">
             <nav className="space-y-8 text-sm">
                 <div className="space-y-2">
                     <h2 className="text-sm font-bold tracking-widest uppercase dark:text-gray-400">Latest Courses </h2>

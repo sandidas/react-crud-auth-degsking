@@ -61,6 +61,14 @@ export const router = createBrowserRouter([
                 element: <NotForLoggedInUser><Login></Login></NotForLoggedInUser>,
             },
             {
+                path: '/blog',
+                element: <NotForLoggedInUser><Login></Login></NotForLoggedInUser>,
+            },
+            {
+                path: '/faq',
+                element: <NotForLoggedInUser><Login></Login></NotForLoggedInUser>,
+            },
+            {
                 path: '/forget-password',
                 element: <NotForLoggedInUser><ForgetPassword></ForgetPassword></NotForLoggedInUser>,
             },
