@@ -118,12 +118,14 @@ const Header = () => {
                                 {
                                     user?.photoURL ?
                                         // Photo found
-                                        <img alt="" className="w-12 h-12 rounded-full ring-2 ring-offset-4 dark:bg-gray-500 ring-gray-700 ring-offset-purple-800" src={user.photoURL} />
+                                        <Link to="/profile"><img alt="" className="w-12 h-12 rounded-full ring-2 ring-offset-4 dark:bg-gray-500 ring-gray-700 ring-offset-purple-800" src={user.photoURL} /></Link>
                                         :
                                         // photo not found
-                                        <div className='px-5 py-3 rounded-full bg-red-800 font-bold'>
-                                            ?
-                                        </div>
+                                        <Link to="/profile">
+                                            <div className='px-5 py-3 rounded-full bg-red-800 font-bold'>
+                                                ?
+                                            </div>
+                                        </Link>
                                 }
 
                                 <button onClick={handleUserSignout} className="self-center px-8 rounded-md py-3 font-semibold focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400 hover:bg-purple-800 hover:text-white bg-purple-600 text-white">Log Out</button>

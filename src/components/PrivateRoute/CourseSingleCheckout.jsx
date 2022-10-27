@@ -10,37 +10,39 @@ const CourseSingleCheckout = () => {
     const { label, register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => console.log(data);
     const { user } = useContext(AuthContext);
-    console.log(user);
+    // console.log(user);
     return (
 
         <div className='grid grid-cols-1 md:grid-cols-8 gap-5'>
             <div className='md:col-span-5 xl:col-span-6'>
                 <div className="p-5 pb-12 space-y-6 dark:bg-gray-900 dark:text-white bg-white text-dark
-border shadow-lg rounded-lg dark:border-none">
+border shadow-lg rounded-lg dark:border-none min-h-screen">
 
                     <h1 className="inline-block text-xl font-semibold sm:text-3xl space-y-2">
-                        FREE CHECKOUT
+                        CHECKOUT
                     </h1>
-
-                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                        {/* register your input into the hook by invoking the "register" function */}
-                        <div>
-                            <label htmlFor="name" className="text-sm text-slate-400">Full Name</label>
-                            <input className='w-full text-xl px-3 py-3 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100' defaultValue={user.displayName} {...register("name")} />
+                    <div className="space-y-4">
+                        <div className='text-xl px-5'>
+                            Course Details
                         </div>
-
-                        <div>
-                            <label htmlFor="name" className="text-sm text-slate-400">Full Name</label>
-                            <input className='w-full text-xl px-3 py-3 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100' defaultValue={user.displayName} {...register("name")} />
+                        <div className="space-y-4">
+                            <div className='px-8'>Course Title: <span className='font-bold text-purple-400'> {course.title} </span> </div>
+                            <div className='px-8'>Course Price: <span className='font-bold text-purple-400'> ${course.price} </span> </div>
                         </div>
+                    </div>
 
 
+                    <div className="space-y-4">
+                        <div className='text-xl px-5'>
+                            Shipping Address
+                        </div>
+                        <div className="space-y-4">
+                            <div className='px-8'>Full Name: <span className='font-bold text-purple-400'> {user.displayName} </span> </div>
+                            <div className='px-8'>Email: <span className='font-bold text-purple-400'> {user?.email} </span> </div>
+                        </div>
+                    </div>
 
 
-                        <input type="submit" className='flex items-center justify-center w-full p-4 my-2 space-x-4  rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400 hover:bg-purple-800 hover:text-white bg-purple-600 text-white' />
-
-                        {errors.exampleRequired && <span>This field is required</span>}
-                    </form>
 
 
                 </div>

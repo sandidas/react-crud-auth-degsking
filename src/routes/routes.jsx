@@ -12,6 +12,7 @@ import CourseContextComponent from "../components/Courses/CourseContextComponent
 import Courses from "../components/Courses/Courses";
 import CourseSingleCheckout from "../components/PrivateRoute/CourseSingleCheckout";
 import PrivateRoute from "./PrivateRoute";
+import Profile from "../components/PrivateRoute/Profile";
 
 
 export const router = createBrowserRouter([
@@ -43,6 +44,11 @@ export const router = createBrowserRouter([
                 path: '/checkout/:id',
                 loader: ({ params }) => loadIndividualCourse(`${params.id}`),
                 element: <PrivateRoute>  <CourseSingleCheckout></CourseSingleCheckout></PrivateRoute>,
+
+            },
+            {
+                path: '/profile/',
+                element: <PrivateRoute>  <Profile></Profile></PrivateRoute>,
 
             },
             {

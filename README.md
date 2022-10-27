@@ -7,6 +7,8 @@ NO! yes, the answer is no. You don't need to pay us to learn to program.
 
 You are welcome to the planet of programming.
 
+# Live Website
+- https://degsking-ass.web.app/
 
 # Major Technologies
 - React (Default, Loader, Router, Context API)
@@ -19,7 +21,7 @@ You are welcome to the planet of programming.
 - vite (To run, deploy react)
 
 # Tools and sites
-- VS Code
+- VS **Code**
 - GitHub
 - Vite 
 
@@ -28,8 +30,27 @@ You are welcome to the planet of programming.
 - Icons https://heroicons.com/
 - Images, blog text - https://unsplash.com  https://medium.com/ https://google.com/ 
 
-# Live Website
-- https://degsking-ass.web.app/
+# Features and functions
+- Responsive Design
+- Three type of login (google, github, form)
+- Forget password (link goest to email)
+- Colorful notification for great user experience
+- Light and Dark mode
+- Profile edit-update
+- SEO frienldy dynamic URL
+- Load data from live server (vite)
+- Private / Premium component for individual courses
+- Course PDF download
+- Restricted Environment (Firebase)
+- Blogs
+- Dynamic Error / 404 page
+- Meaningful Design
+- Organized Folder, file and code structure
+- Optimized code by avoiding unnecessary data loading.
+- Meaningful FAQ 
+- Dynamic Profile page, User can update profile from this page
+- Loading image from Live Server (All images are well optimized and resized)
+- 
 
-I'M:
+# I'M:
 <code> <a href="https://sandipandas.net"> Sandipan Das </a> </code>
