@@ -18,7 +18,7 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         if (!email || !password) {
-            showAlert('error', "Please do not leave any empty fields.");
+            showAlert('error', "ERROR: You left empty field.");
             return
         }
 
@@ -27,8 +27,9 @@ const Login = () => {
             .then(result => {
                 // console.log(result);
                 const user = result.user;
-                showAlert('success', "User logged in successfully.");
+                showAlert('success', "Logged in successfully.");
                 form.reset();
+                setLoading(false);
                 navigate(from, { replace: true });
 
             })
@@ -43,8 +44,9 @@ const Login = () => {
         signinwithGoogle()
             .then((result) => {
                 const user = result.user;
-                showAlert('success', "logged in successfully.");
-                navigate('/');
+                showAlert('success', "Logged in successfully.");
+                setLoading(false);
+                navigate(from, { replace: true });
             })
             .catch((error) => {
                 setLoading(false);
@@ -57,7 +59,9 @@ const Login = () => {
         signInWithGithub()
             .then((result) => {
                 const user = result.user;
-                showAlert('success', 'Successfully Registered.');
+                showAlert('success', "Logged in successfully.");
+                setLoading(false);
+                navigate(from, { replace: true });
             })
             .catch((error) => {
                 const errors = error.message + ' | ' + error.code;

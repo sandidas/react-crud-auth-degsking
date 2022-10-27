@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { AuthContext } from '../../context/UserContext';
 
 const LoadingSpinner = () => {
-    const { user, loading } = useContext(AuthContext);
+    const { loading } = useContext(AuthContext);
     const location = useLocation();
     if (loading) {
         return (

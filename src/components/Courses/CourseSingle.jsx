@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import Pdf from "react-to-pdf";
 
 const CourseSingle = () => {
@@ -35,10 +35,11 @@ const CourseSingle = () => {
                 </div>
             </div>
             <div>
-                <button className="self-center mx-2 mt-2 px-2 text-sm rounded-md py-1 focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400 hover:bg-purple-800 hover:text-white bg-purple-600 text-white">Get premium access</button>
+                <Link to={`/checkout/${course.slug}`} className="self-center mx-2 mt-2 px-2 text-sm rounded-md py-1 focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400 hover:bg-purple-800 hover:text-white bg-purple-600 text-white">Get premium access</Link>
             </div>
 
         </div>
+
     );
 };
 

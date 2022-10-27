@@ -10,7 +10,8 @@ import { loadIndividualCourse } from "../utilities/utilities";
 import CourseSingle from "../components/Courses/CourseSingle";
 import CourseContextComponent from "../components/Courses/CourseContextComponent";
 import Courses from "../components/Courses/Courses";
-import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
+import CourseSingleCheckout from "../components/PrivateRoute/CourseSingleCheckout";
+import PrivateRoute from "./PrivateRoute";
 
 
 export const router = createBrowserRouter([
@@ -29,13 +30,19 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/courses',
-                element:<CourseContextComponent> <Courses></Courses> </CourseContextComponent>,
+                element: <CourseContextComponent> <Courses></Courses> </CourseContextComponent>,
                 // loader: () => fetch('https://degsking-ass.vercel.app/courses')
             },
             {
                 path: '/course/details/:id',
                 loader: ({ params }) => loadIndividualCourse(`${params.id}`),
-                element:<CourseContextComponent> <CourseSingle></CourseSingle> </CourseContextComponent>,
+                element: <CourseContextComponent> <CourseSingle></CourseSingle> </CourseContextComponent>,
+
+            },
+            {
+                path: '/checkout/:id',
+                loader: ({ params }) => loadIndividualCourse(`${params.id}`),
+                element: <PrivateRoute>  <CourseSingleCheckout></CourseSingleCheckout></PrivateRoute>,
 
             },
             {

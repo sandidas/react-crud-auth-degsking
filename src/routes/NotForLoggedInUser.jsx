@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/UserContext';
 
 const NotForLoggedInUser = ({ children }) => {
     const { user, loading, showAlert } = useContext(AuthContext);
     const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/'; // if old history location not found then default get home route
 
     if (loading) {
         return (
@@ -15,13 +17,12 @@ const NotForLoggedInUser = ({ children }) => {
                 <div className="w-4 h-4 rounded-full animate-pulse bg-purple-800 dark:bg-purple-300"></div>
             </div>
         )
-
     } else {
         if (!user || !user.uid) {
             return children;
         } else {
-            showAlert("error", "Logged In user not allow to login/register again")
-            return <Navigate to='/home' state={{ from: location }} replace  ></Navigate>
+            showAlert("success", "Relocating Success.")
+           return <Navigate to='/' state={{ from: location }} replace  ></Navigate>
         }
     }
 };

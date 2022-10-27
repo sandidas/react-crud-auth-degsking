@@ -28,7 +28,7 @@ const Registration = () => {
                 handleUpdateUserProfile(name, photoURL);
                 handleEmailVerification();
                 const user = result.user;
-                showAlert('success', 'Please check your email address for verification.');
+                showAlert('success', 'Please check your email for verification.');
                 navigate(from, { replace: true });
 
             })
@@ -60,7 +60,7 @@ const Registration = () => {
         signinwithGoogle()
             .then((result) => {
                 const user = result.user;
-                showAlert('success', 'Successfully logged in.');
+                showAlert('success', 'Logged in successfully.');
             })
             .catch((error) => {
                 const errors = error.message + ' | ' + error.code;
@@ -72,7 +72,7 @@ const Registration = () => {
         signInWithGithub()
             .then((result) => {
                 const user = result.user;
-                showAlert('success', 'Successfully Registered.');
+                showAlert('success', 'Logged in successfully.');
             })
             .catch((error) => {
                 const errors = error.message + ' | ' + error.code;

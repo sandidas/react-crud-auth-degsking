@@ -88,18 +88,20 @@ _Auth Registration form [Full name, Photo URL, Email, Password ]  (google, GitHu
 
 Key points Completed
 =====================
+__ 2 _ Website title
 __ 3 _ Navber - Responsive Pending *
 __ 4 _ Login, register, forget password
 __ 5 _ registration form fields
 __ 6 _ Courses
 __ 7 _ Courses page 2 column ( sidebar (course categories) , content )
 __ 8 _ Course Details Page (header, Description, image, )
+__ 9 _ single course top after title _ create pdf button  react-to-pdf package
 __
 
 Key points Remaining
 =====================
-__ 2 _ Website title
-__ 9 _ single course top after title _ create pdf button  react-to-pdf package
+
+
 __ 10 _ single course bottom after content - Get premium access - 
         private route redirects to the login page - 
         After login - redirected to the checkout page
