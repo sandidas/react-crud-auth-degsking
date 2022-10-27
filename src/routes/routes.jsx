@@ -13,6 +13,8 @@ import Courses from "../components/Courses/Courses";
 import CourseSingleCheckout from "../components/PrivateRoute/CourseSingleCheckout";
 import PrivateRoute from "./PrivateRoute";
 import Profile from "../components/PrivateRoute/Profile";
+import Blog from "../components/blog/blog";
+import Faq from "../components/Faq/Faq";
 
 
 export const router = createBrowserRouter([
@@ -62,11 +64,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/blog',
-                element: <NotForLoggedInUser><Login></Login></NotForLoggedInUser>,
+                element: <Blog></Blog>,
             },
             {
                 path: '/faq',
-                element: <NotForLoggedInUser><Login></Login></NotForLoggedInUser>,
+                element: <Faq></Faq>,
             },
             {
                 path: '/forget-password',

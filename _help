@@ -109,6 +109,7 @@ __ 5 _ Meaningful readme.md
 __ 6 _ 404 page
 __ 7 _ Color selection is meaningful
 __ 8 _ Clean and organized Code
+__ Blog
 
 Optional 
 =========
@@ -119,6 +120,7 @@ __ 6 _ dark/light theme toggle
 __ 7 _ stylish footer
 __ 8 _ profile image (edit profile)
 __ 9 _ Creativity (Never ended)
+__ FAQ 
 Additional 
 ==========
 __ 1 _ host image anywhere
@@ -128,10 +130,10 @@ __ 4 _ Vercel - Server Side
 
 Key points Remaining
 =====================
-__ Blog
+
 __ Home Page
 __ react packages ( react-icons, react-image-magnify, react-awesome-slider, react-loader, react-leaflet)
-__ FAQ 
+
 
 
 Data Type

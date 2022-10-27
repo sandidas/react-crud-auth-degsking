@@ -15,7 +15,7 @@ const Header = () => {
     const handleMobileNavigation = () => {
         setMobNavigation(!mobNavigation);
     }
-    console.log(mobNavigation);
+
 
     useEffect(() => {
         const currentTheme = checkCurrentTheme();
