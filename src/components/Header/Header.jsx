@@ -66,7 +66,7 @@ const Header = () => {
         <>
 
             <header className="p-4 dark:bg-gray-900 dark:text-gray-100 bg-slate-100 top-0 sticky">
-                <div className="container flex justify-between h-16 mx-auto w-[90%]">
+                <div className="flex justify-between h-16 mx-auto w-[90%]">
                     <Link rel="noopener noreferrer" to="/" aria-label="Back to homepage" className="flex items-center p-2 text-4xl font-extrabold">
                         <HiColorSwatch />
                         DegsKing
@@ -74,7 +74,7 @@ const Header = () => {
                     <ul className="items-stretch hidden space-x-3 lg:flex">
                         <li className="flex">
                             <NavLink to="/home" className={({ isActive }) => (isActive ?
-                                "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-purple-400 dark:border-violet-400 text-purple-800hover:bg-purple-700 hover:text-white rounded-md  font-medium"
+                                "flex items-center px-4 -mb-1 border-b-2 rounded-md font-medium dark:border-purple-700 dark:hover:bg-purple-600 dark:bg-slate-700 dark:text-white text-purple-800 bg-purple-200 hover:bg-purple-700 hover:text-white"
                                 :
                                 "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent hover:bg-purple-700 hover:text-white rounded-md font-medium")} >
                                 Home
@@ -82,7 +82,7 @@ const Header = () => {
                         </li>
                         <li className="flex">
                             <NavLink to="courses" className={({ isActive }) => (isActive ?
-                                "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-purple-400 dark:border-violet-400 text-purple-800 hover:bg-purple-700 hover:text-white rounded-md  font-medium"
+                                "flex items-center px-4 -mb-1 border-b-2 rounded-md font-medium dark:border-purple-700 dark:hover:bg-purple-600 dark:bg-slate-700 dark:text-white text-purple-800 bg-purple-200 hover:bg-purple-700 hover:text-white"
                                 :
                                 "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent hover:bg-purple-700 hover:text-white rounded-md  font-medium")} >
                                 Courses
@@ -90,7 +90,7 @@ const Header = () => {
                         </li>
                         <li className="flex">
                             <NavLink to="/blog" className={({ isActive }) => (isActive ?
-                                "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-purple-400 dark:border-violet-400 text-purple-800 hover:bg-purple-700 hover:text-white rounded-md  font-medium"
+                                "flex items-center px-4 -mb-1 border-b-2 rounded-md font-medium dark:border-purple-700 dark:hover:bg-purple-600 dark:bg-slate-700 dark:text-white text-purple-800 bg-purple-200 hover:bg-purple-700 hover:text-white"
                                 :
                                 "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent hover:bg-purple-700 hover:text-white rounded-md  font-medium")} >
                                 Blogs
@@ -98,13 +98,37 @@ const Header = () => {
                         </li>
                         <li className="flex">
                             <NavLink to="/faq" className={({ isActive }) => (isActive ?
-                                "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-purple-400 dark:border-violet-400 text-purple-800 hover:bg-purple-700 hover:text-white rounded-md  font-medium"
+                                "flex items-center px-4 -mb-1 border-b-2 rounded-md font-medium dark:border-purple-700 dark:hover:bg-purple-600 dark:bg-slate-700 dark:text-white text-purple-800 bg-purple-200 hover:bg-purple-700 hover:text-white"
                                 :
                                 "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent hover:bg-purple-700 hover:text-white rounded-md  font-medium")} >
                                 FAQ
                             </NavLink>
                         </li>
                     </ul>
+
+
+                    {/* theme switch button  */}
+                    <button
+                        onClick={handleThemeSwitch} >
+                        {
+                            theme === 'dark' ?
+                                <div className='bg-white p-1 rounded-full'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#000" className="w-6 h-6">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                                    </svg>
+                                </div>
+
+                                :
+                                <div className=' p-1 rounded-full'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#000" className="w-6 h-6">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                                    </svg>
+                                </div>
+                        }
+                    </button>
+
+                    {/* login/register buttons  */}
+
                     {
                         !user?.uid ?
                             // if id not found / not logged in
@@ -137,26 +161,6 @@ const Header = () => {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
-                    <button
-                        onClick={handleThemeSwitch} >
-                        {
-                            theme === 'dark' ?
-                                <div className='bg-white p-1 rounded-full'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#000" className="w-6 h-6">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
-                                    </svg>
-                                </div>
-
-                                :
-                                <div className=' p-1 rounded-full'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#000" className="w-6 h-6">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
-                                    </svg>
-                                </div>
-                        }
-                    </button>
-
-
                 </div>
             </header>
 

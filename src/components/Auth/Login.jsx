@@ -71,7 +71,7 @@ const Login = () => {
 
 
     return (
-        <div className="mx-auto md:max-w-2xl max-w-7xl flex flex-col p-6 rounded-md sm:p-10 dark:bg-gray-900 dark:text-gray-100 shadow shadow-slate-500 border-slate-700">
+        <div className="mx-auto md:max-w-2xl max-w-7xl flex flex-col p-6 rounded-md sm:p-10 dark:bg-gray-900 dark:text-gray-100 bg-gray-100 shadow shadow-slate-500 border-slate-700 bg-gray-100">
             <div className="mb-8 text-center">
                 <h1 className="my-3 text-4xl font-bold">Login Now</h1>
                 <p className="text-sm dark:text-gray-400">Login to access your account</p>
@@ -106,7 +106,7 @@ const Login = () => {
                         <div className="flex justify-between mb-2">
                             <label htmlFor="password" className="text-sm text-slate-400">Password</label>
                             <label htmlFor="password" className="text-sm text-yellow-600">
-                                <Link className='hover:text-yellow-500' to='/forget-password'>Forget Password</Link>
+                                <Link className='hover:text-yellow-500 font-bold' to='/forget-password'>Forget Password</Link>
                             </label>
                         </div>
                         <input required type="password" name="password" id="password" placeholder="* * * * *" className="w-full text-xl px-3 py-3 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100" />
