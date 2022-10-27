@@ -7,7 +7,7 @@ const Main = () => {
     return (
         <>
             <Header></Header>
-            <div className='mx-auto max-w-7xl w-[90%] py-10'>
+            <div className='mx-auto max-w-7xl w-[98%] md:w-[90%] py-10'>
                 <Outlet></Outlet>
             </div>
             <Footer></Footer>

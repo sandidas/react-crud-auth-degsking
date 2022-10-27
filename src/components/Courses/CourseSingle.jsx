@@ -34,6 +34,10 @@ const CourseSingle = () => {
                     </div>
                 </div>
             </div>
+            <div>
+                <button className="self-center mx-2 mt-2 px-2 text-sm rounded-md py-1 focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400 hover:bg-purple-800 hover:text-white bg-purple-600 text-white">Get premium access</button>
+            </div>
+
         </div>
     );
 };
